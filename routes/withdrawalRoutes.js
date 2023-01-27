@@ -14,7 +14,7 @@ withdrawalRoutes.get(
     isAuth,
     expressAsyncHandler(async (req, res) => {
       const userId =  req.user._id
-      const withdrawals = await withdrawalByUserId(userId) 
+      const withdrawals = await withdrawalByUserId(userId).sort({createdAt:-1})
       const refferalFirstPaymentSum = await Goal.aggregate([
         {
           $match: {

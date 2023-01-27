@@ -26,7 +26,7 @@ paymentRoutes.post(
     isAuth,
     expressAsyncHandler(async (req, res) => {
       const userId =  req.user._id
-     const result = await paymentById(userId)
+     const result = await paymentById(userId).sort({createdAt:-1})
      res.send({status: true, message:"payments fetch sucessfully", data: result});
 
     })

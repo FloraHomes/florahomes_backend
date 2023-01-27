@@ -90,7 +90,7 @@ userRoutes.put(
       user.role = req.body?.role || user?.role;
       user.phone = req.body?.phone || user?.phone;
       user.address = req.body?.address || user?.address;
-      user.property = req?.body?.propertyId || user?.propertyId;
+      user.property = req?.body?.propertyId || user?.property;
       user.onboardingLevel = req?.body?.onboardingLevel;
       user.idUploadUrl = req.body?.idUploadUrl || user?.idUploadUrl;
       user.photoUrl = req.body?.photoUrl || user?.photoUrl;
