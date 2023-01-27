@@ -46,7 +46,7 @@ goalRoutes.post(
           let source = "Referral Bonus"
 
           let title = "Referral Reward"
-          let body = `You have just earned a referral reward of ${amountFormat(reward)} naira. The ${amountFormat(amountPaid)} naira have been moved into your property account while ${balance} naira is in your cash wallet. congratulations.`
+          let body = `You have just earned a referral reward of ${amountFormat(reward)} naira. The sum of ${amountFormat(amountPaid)} naira have been moved into your property account while ${balance} naira is in your cash wallet. congratulations.`
 
       
 
