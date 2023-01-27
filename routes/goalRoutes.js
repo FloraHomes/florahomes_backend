@@ -3,7 +3,7 @@ import expressAsyncHandler from "express-async-handler";
 import { goalByUserId } from "../controllers/goalController.js";
 import { savePayment } from "../controllers/paymentController.js";
 import Goal from "../models/goalModel.js";
-import { isAuth } from "../utils.js";
+import { amountFormat, isAuth } from "../utils.js";
 
 
 const goalRoutes = express.Router();
@@ -35,9 +35,9 @@ goalRoutes.post(
     
           const result = await goalByUserId(referralId)
 
-
-
+          let reward = firstPayment * 0.1
           let amountPaid = 0.8 * (firstPayment * 0.1)
+          let balance = reward - amountPaid
           let price = result[0]?.property?.currentPricePerUnit
           let purchasedUnit = (amountPaid/price).toFixed(2)
           let referenceId = `rfb-${time}`
@@ -45,9 +45,12 @@ goalRoutes.post(
           let userId =  referralId
           let source = "Referral Bonus"
 
+          let title = "Referral Reward"
+          let body = `You have just earned a referral reward of ${amountFormat(reward)} naira. The ${amountFormat(amountPaid)} naira have been moved into your property account while ${balance} naira is in your cash wallet. congratulations.`
+
       
 
-        const pay = await savePayment(amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source) 
+        const pay = await savePayment(amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source, title, body) 
    
          
         }

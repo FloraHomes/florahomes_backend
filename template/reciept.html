@@ -168,7 +168,7 @@
       }
 
       thead {
-        background-color: #8064a2;
+        background-color: #8064a2; 
         color: #fff;
       }
 
@@ -230,11 +230,11 @@
         <p>Status: <span>Verified</span></p>
         <div class="details">
           <div>
-            <span style="text-align: left;">Reciept Id: <b>{{recieptData.recieptId}}</b></span>
-            <span style="text-align: right; margin-left: 50px;">Date: <b>{{recieptData.date}}</b></span>
+            <span style="text-align: left;">Reciept Id: <b><%= recieptId %></b></span>
+            <span style="text-align: right; margin-left: 50px;">Date: <b><%= date %></b></span>
           </div>
           <div>
-            <span style="text-align: left;">Customer Name: <b>{{recieptData.customerName}}</b></span>
+            <span style="text-align: left;">Customer Name: <b><%= customerName %></b></span>
           </div>
       
         </div>
@@ -244,7 +244,7 @@
           <span style="text-align: right; margin-left: 5px;"><b>Owner-Earner Package</b></span>
           <span style="margin-left: 20px;">||</span>
           <span style="text-align: left; margin-left: 20px">SOURCE:</span>
-          <span style="text-align: right; margin-left: 5px;"><b>{{recieptData.source}}</b></span>
+          <span style="text-align: right; margin-left: 5px;"><b><%= source %></b></span>
         </div>
 
         <div class="table-div">
@@ -259,34 +259,34 @@
             </thead>
             <tbody>
               <tr>
-                <td>Payment for Own-Earner slot in the {{recieptData.property}}</td>
-                <td>{{recieptData.qty}}</td>
-                <td>&#8358;{{recieptData.price}}/unit</td>
-                <td>&#8358;{{recieptData.amount}}</td>
+                <td>Payment for Own-Earner slot in the <%= property %></td>
+                <td><%= qty %></td>
+                <td>&#8358;<%= price %>/unit</td>
+                <td>&#8358;<%= amount %></td>
               </tr>
             </tbody>
           </table>
           <div style="line-height: 1em;">
           <div class="transanction-details" >
             <span style="width: 300px;">Previous units purchased:</span>
-            <span>{{recieptData.prevPurchase}} Units</span>
+            <span><%= prevPurchase %> Units</span>
           </div>
           <div class="transanction-details">
             <span style="width: 300px;">This Purchase:</span>
-            <span>{{recieptData.qty}} Units</span>
+            <span><%= qty %> Units</span>
           </div>
           <div class="transanction-details" style="margin-bottom: 20px;">
             <span style="width: 300px;">Total units purchased as at date:</span>
-              <span>{{recieptData.totalPurchase}} Units</span>
+              <span><%= totalPurchase %> Units</span>
           </div>
           <div class="transanction-details" style="margin-bottom: 20px;">
             <span style="width: 300px;">Remainder:</span>
-              <span>{{recieptData.remainder}} Units</span>
+              <span><%= remainder %> Units</span>
           </div>
         </div>
           <div class="total">
             <span style="text-align: left; margin-left: 50px;">TOTAL</span>
-              <span style="text-align: right; margin-left: 50px;">	&#8358;{{recieptData.amount}}</span>
+              <span style="text-align: right; margin-left: 50px;">	&#8358;<%= amount %></span>
           </div>
         </div>
         <img src="https://res.cloudinary.com/djykib0gk/image/upload/v1674673086/customImages/florasign_wjqofe.png" style="display:block; margin-left:auto; margin-right:auto"/>

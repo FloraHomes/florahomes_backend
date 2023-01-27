@@ -52,11 +52,11 @@ export const generateToken = (user) => {
     
   });
 
-  export const recieptEmailTemplate = (name) => {
+  export const recieptEmailTemplate = (name, body) => {
     return `<h3>Payment Reciept</h3>
     <p>
     Hi ${name},</p>
-    <p>Your payment is acknowledged. Please find the attached of your transaction receipt. Thank you for patnering with us</p>
+    <p>${body}</p>
     <p>
     Yours in Progress.
     </p>

@@ -4,7 +4,7 @@ import { logWithdrawal, withdrawalByUserId } from "../controllers/withdrawalCont
 import Goal from "../models/goalModel.js";
 import Withdrawal from "../models/withdrawalModel.js";
 import { goalByUserId } from "../controllers/goalController.js";
-import { isAuth } from "../utils.js";
+import { amountFormat, isAuth } from "../utils.js";
 import { savePayment } from "../controllers/paymentController.js";
 
 const withdrawalRoutes = express.Router();
@@ -14,7 +14,7 @@ withdrawalRoutes.get(
     isAuth,
     expressAsyncHandler(async (req, res) => {
       const userId =  req.user._id
-      const withdrawals = await withdrawalByUserId(userId).sort({createdAt:-1})
+      const withdrawals = await withdrawalByUserId(userId)
       const refferalFirstPaymentSum = await Goal.aggregate([
         {
           $match: {
@@ -86,9 +86,12 @@ withdrawalRoutes.post(
     let userId =  user
     let source = "Cash Wallet"
 
+    let title = "Fund Movement";
+    let body = `You have successfully moved the sum of ${amountFormat(amountPaid)} naira from your cash wallet to your property account. Please find the attached of your transaction receipt. Thank you for patnering with us`
+
 
     try{
-      const pay = await savePayment(amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source) 
+      const pay = await savePayment(amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source, title, body) 
       const withdr = await logWithdrawal(amount, comment, paymentDate, user)
   
       

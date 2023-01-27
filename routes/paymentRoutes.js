@@ -13,8 +13,11 @@ paymentRoutes.post(
     isAuth,
     expressAsyncHandler(async (req, res) => {
 
+      let title = "Successful Payment"
+      let body = "Your payment is acknowledged. Please find the attached of your transaction receipt. Thank you for patnering with us"
+
       const {amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source} = req.body
-      const result = await savePayment(amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source) 
+      const result = await savePayment(amountPaid, purchasedUnit, price, referenceId, propertyId, userId, source, title, body) 
 
       res.send({status:true, message: "Payment was made and logged successfully", data: result});
       
