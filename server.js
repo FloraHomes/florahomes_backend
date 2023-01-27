@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(cors());
 
 //routes
-// app.use("/api/seed", seedRoutes);
+app.use("/api/seed", seedRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/payment", paymentRoutes);
