@@ -82,9 +82,12 @@ export const savePayment = async(amountPaid, purchasedUnit, price, referenceId, 
   //   type: "",
   // };
 
-  pdf.create(html, {childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}}).toFile(`./attachment/${payment?._id}.pdf`, () => {
+  const filePath = getBaseUrl(`attachment/${payment?._id}.pdf`)
+
+  console.log(filePath?.pathname.substring(1));
+
+  pdf.create(html, {childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}}).toFile(filePath?.pathname.substring(1), () => {
     console.log('pdf done')
-    const filePath = getBaseUrl(`attachment/${payment?._id}.pdf`)
     mailgun()
     .messages()
     .send(
@@ -100,7 +103,7 @@ export const savePayment = async(amountPaid, purchasedUnit, price, referenceId, 
           console.log(error);
         } else {
           console.log(body);
-          fs.unlink(`./attachment/${payment?._id}.pdf`, (err) => {
+          fs.unlink(filePath?.pathname.substring(1), (err) => {
             if (err) {
               console.log(err);
                 // throw err;
