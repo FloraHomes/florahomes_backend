@@ -16,8 +16,6 @@ uploadRoutes.post("/", isAuth, async (req, res) => {
       req.body.b64,
       {
         folder: req.body.folderName,
-        width: req.body.width,
-        crop: "scale",
       },
 
       function (error, result) {

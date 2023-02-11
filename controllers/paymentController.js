@@ -84,15 +84,12 @@ export const savePayment = async(amountPaid, purchasedUnit, price, referenceId, 
 
   const filePath = getBaseUrl(`attachment/${payment?._id}.pdf`)
 
-  console.log(filePath?.pathname.substring(1));
-
   pdf.create(html, {childProcessOptions: { env: { OPENSSL_CONF: '/dev/null' }}}).toFile(filePath?.pathname.substring(1), () => {
-    console.log('pdf done')
     mailgun()
     .messages()
     .send(
       {
-        from: 'Florahomes <admin@florahomesgc.com>',
+        from: 'FloraHomesGC <admin@florahomesgc.com>',
         to: `${recieptData?.customerName} <${user.email}>`,
         subject: title,
         html: recieptEmailTemplate(recieptData?.customerName, body),

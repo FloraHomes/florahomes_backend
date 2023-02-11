@@ -26,11 +26,21 @@ export const generateToken = (user) => {
           res.status(401).send({ message: 'Invalid Token' });
         } else {
           req.user = decode;
+         
           next();
         }
       });
     } else {
-      res.status(401).send({status:false, message: 'No Token' });
+      res.status(401).send({status:false, message: 'Unauthorized' });
+    }
+  };
+
+  export const isAdmin = (req, res, next) => {
+    if (req.user && req.user.role === "admin") {
+      console.log(req.user);
+      next();
+    } else {
+      res.status(401).send({status: false, message: 'Permission denied' });
     }
   };
 

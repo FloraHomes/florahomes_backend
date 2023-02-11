@@ -1,7 +1,7 @@
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Property from "../models/propertyModel.js";
-import { isAuth } from "../utils.js";
+import { isAdmin, isAuth } from "../utils.js";
 
 const propertyRoutes = express.Router();
 
@@ -29,5 +29,27 @@ propertyRoutes.get(
     }
   })
 );
+
+propertyRoutes.post(
+  "/save",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const {name, photo, currentPricePerUnit, title, content, propertyCategory, propertyType, planNumber, faq, area, unitsPerPlot, coverPhoto, otherPhotos} = req.body
+    const newProperty = new Property({name, photo, currentPricePerUnit, title, content, propertyCategory, propertyType, planNumber, faq, area, unitsPerPlot, coverPhoto, otherPhotos, user: req.user._id});
+
+
+    try {
+      const property = await newProperty.save();
+      res.status(200).send({status:true, message: "property saved", data: property});
+    }catch(error){
+      res.status(301).send({status:false, message: "property not recorded", data: error});
+
+    }    
+  })
+);
+
+
+
+
 
 export default propertyRoutes;

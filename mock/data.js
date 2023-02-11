@@ -30,3 +30,32 @@ export const users = [
     },
 
 ]
+
+export const propertyTypes = [
+  {
+    name: "Land",
+  },
+
+  {
+    name: "Building",
+  }
+]
+
+export const propertyCategories = [
+  {
+    name: "Own Earner Property",
+  },
+
+  {
+    name: "Estate Property",
+  },
+  {
+    name: "Non Estate Property",
+  },
+  {
+    name: "3rd Party Property",
+  },
+  {
+    name: "Shortlet",
+  },
+]
