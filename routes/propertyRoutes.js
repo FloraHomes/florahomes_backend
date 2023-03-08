@@ -6,9 +6,9 @@ import { isAdmin, isAuth } from "../utils.js";
 const propertyRoutes = express.Router();
 
 propertyRoutes.get(
-  "/ownEarner",
+  "/",
   expressAsyncHandler(async (req, res) => {
-    const properties = await Property.find();
+    const properties = await Property.find().sort({createdAt:-1}).populate('propertyCategory', 'name');
     res.send({
       status: true,
       message: "Properties fetch sucessfully",
@@ -34,8 +34,8 @@ propertyRoutes.post(
   "/save",
   isAuth,
   expressAsyncHandler(async (req, res) => {
-    const {name, photo, currentPricePerUnit, title, content, propertyCategory, propertyType, planNumber, faq, area, unitsPerPlot, coverPhoto, otherPhotos} = req.body
-    const newProperty = new Property({name, photo, currentPricePerUnit, title, content, propertyCategory, propertyType, planNumber, faq, area, unitsPerPlot, coverPhoto, otherPhotos, user: req.user._id});
+    const {name, photo, currentPricePerUnit, caption, title, content, propertyCategory, propertyType, planNumber, faq, area, unitsPerPlot, coverPhoto, otherPhotos} = req.body
+    const newProperty = new Property({name, photo, currentPricePerUnit, title, caption, content, propertyCategory, propertyType, planNumber, faq, area, unitsPerPlot, coverPhoto, otherPhotos, user: req.user._id});
 
 
     try {

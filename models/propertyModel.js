@@ -6,6 +6,7 @@ const propertySchema = new mongoose.Schema(
         photo: {type: String, required: true},
         currentPricePerUnit: {type: String, required: false},
         title: {type: String, required: true},
+        caption: {type: String, required: true},
         content: {type: String, required: true},
         propertyCategory: { type: mongoose.Schema.Types.ObjectId, ref: "PropertyCategory", required: true },
         propertyType: { type: mongoose.Schema.Types.ObjectId, ref: "PropertyType", required: true },
